@@ -83,6 +83,12 @@ export default function DashboardOverviewPage() {
 
   getUser();
 }, []);
+  const initials = userName
+  .split(" ")
+  .map((name) => name[0])
+  .join("")
+  .slice(0, 2)
+  .toUpperCase();
   useEffect(() => {
     console.log("DASHBOARD CHECK RUNNING");
   const checkUser = async () => {
@@ -107,7 +113,7 @@ export default function DashboardOverviewPage() {
         <div className="flex items-center gap-4">
           <Avatar className="h-14 w-14 border border-border">
             <AvatarFallback className="bg-gradient-to-br from-primary to-secondary text-lg font-semibold text-white">
-              AO
+              {initials}
             </AvatarFallback>
           </Avatar>
           <div>
