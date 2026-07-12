@@ -38,8 +38,18 @@ console.log("LOGIN ERROR:", error);
   }
 
   if (data.user) {
+  const { data: profile } = await supabase
+    .from("profiles")
+    .select("role")
+    .eq("id", data.user.id)
+    .single();
+
+  if (profile?.role === "admin") {
+    router.push("/admin");
+  } else {
     router.push("/dashboard");
   }
+}
 
   setLoading(false);
 };
