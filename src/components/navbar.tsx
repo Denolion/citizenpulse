@@ -128,17 +128,22 @@ export function Navbar() {
           )}
         </div>
 
-        {/* Desktop auth buttons */}
-        <div className="ml-auto hidden items-center gap-2 lg:flex">
-          <Button variant="ghost" size="sm" className="gap-1.5">
-            <LogIn className="h-4 w-4" />
-            Login
-          </Button>
-          <Button size="sm" className="gap-1.5">
-            <UserPlus className="h-4 w-4" />
-            Sign Up
-          </Button>
-        </div>
+       {/* Desktop auth buttons */}
+<div className="ml-auto hidden items-center gap-2 lg:flex">
+  <Button asChild variant="ghost" size="sm" className="gap-1.5">
+    <Link href="/login">
+      <LogIn className="h-4 w-4" />
+      Login
+    </Link>
+  </Button>
+
+  <Button asChild size="sm" className="gap-1.5">
+    <Link href="/signup">
+      <UserPlus className="h-4 w-4" />
+      Sign Up
+    </Link>
+  </Button>
+</div>
 
         {/* Mobile hamburger */}
         <button
@@ -204,16 +209,21 @@ export function Navbar() {
             </nav>
 
             {/* Mobile auth buttons */}
-            <div className="grid grid-cols-2 gap-3 pt-2">
-              <Button variant="outline" className="gap-1.5">
-                <LogIn className="h-4 w-4" />
-                Login
-              </Button>
-              <Button className="gap-1.5">
-                <UserPlus className="h-4 w-4" />
-                Sign Up
-              </Button>
-            </div>
+<div className="grid grid-cols-2 gap-3 pt-2">
+  <Button asChild variant="outline" className="gap-1.5">
+    <Link href="/login" onClick={() => setMobileOpen(false)}>
+      <LogIn className="h-4 w-4" />
+      Login
+    </Link>
+  </Button>
+
+  <Button asChild className="gap-1.5">
+    <Link href="/signup" onClick={() => setMobileOpen(false)}>
+      <UserPlus className="h-4 w-4" />
+      Sign Up
+    </Link>
+  </Button>
+</div>
           </div>
         </div>
       </div>
