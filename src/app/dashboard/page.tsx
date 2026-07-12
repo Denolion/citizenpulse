@@ -30,7 +30,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { PollCard } from "@/components/poll-card";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 
@@ -67,6 +67,22 @@ const stats = [
 
 export default function DashboardOverviewPage() {
   const router = useRouter();
+  const [userName, setUserName] = useState("User");
+  useEffect(() => {
+  const getUser = async () => {
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
+    if (user) {
+      setUserName(
+        user.user_metadata?.full_name || user.email?.split("@")[0] || "User"
+      );
+    }
+  };
+
+  getUser();
+}, []);
   useEffect(() => {
     console.log("DASHBOARD CHECK RUNNING");
   const checkUser = async () => {
@@ -96,7 +112,7 @@ export default function DashboardOverviewPage() {
           </Avatar>
           <div>
             <h1 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-              Welcome back, Amara!
+              Welcome back, {userName}!
             </h1>
             <p className="mt-1 text-sm text-muted-foreground">
               Here&apos;s what&apos;s happening with your polls today.
