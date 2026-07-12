@@ -65,7 +65,7 @@ export default function ManagePollsPage() {
           </p>
         </div>
         <Button asChild className="gap-1.5">
-          <Link href="/admin/polls">
+          <Link href="/admin/polls/create">
             <Plus className="h-4 w-4" />
             Create Poll
           </Link>
