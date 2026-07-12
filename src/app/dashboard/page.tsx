@@ -68,6 +68,7 @@ const stats = [
 export default function DashboardOverviewPage() {
   const router = useRouter();
   useEffect(() => {
+    console.log("DASHBOARD CHECK RUNNING");
   const checkUser = async () => {
     const {
       data: { session },
