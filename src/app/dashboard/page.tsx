@@ -30,6 +30,9 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { PollCard } from "@/components/poll-card";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { supabase } from "@/lib/supabase";
 
 const stats = [
   {
@@ -63,6 +66,20 @@ const stats = [
 ];
 
 export default function DashboardOverviewPage() {
+  const router = useRouter();
+  useEffect(() => {
+  const checkUser = async () => {
+    const {
+      data: { session },
+    } = await supabase.auth.getSession();
+
+    if (!session) {
+      router.replace("/login");
+    }
+  };
+
+  checkUser();
+}, [router]);
   const unreadCount = userNotifications.filter((n) => !n.read).length;
   const recommended = allPolls.slice(0, 3);
 
