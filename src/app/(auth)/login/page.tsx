@@ -28,6 +28,9 @@ export default function LoginPage() {
     password,
   });
 
+    console.log("LOGIN RESULT:", data);
+console.log("LOGIN ERROR:", error);
+
   if (error) {
     alert(error.message);
     setLoading(false);
